@@ -1,0 +1,63 @@
+@import './node_modules/bootstrap/scss/bootstrap.scss';
+
+$turquoise: #1abc9c;
+$emerland: #2ecc71;
+$peter-river: #3498db;
+$amethyst: #9b59b6;
+$wet-asphalt: #34495e;
+$green-sea: #16a085;
+$nephritis: #27ae60;
+$belize-hole: #2980b9;
+$wisteria: #8e44ad;
+$midnight-blue: #2c3e50;
+$sun-flower: #f1c40f;
+$carrot: #e67e22;
+$alizarin: #e74c3c;
+$clouds: #ecf0f1;
+$concrete: #95a5a6;
+$orange: #f39c12;
+$pumpkin: #d35400;
+$pomegranate: #c0392b;
+$silver: #bdc3c7;
+$asbestos: #7f8c8d;
+
+$whitesmoke: #fafafa;
+$separator: #fefefe;
+
+$accent-color: #fc3a64;
+//$accent-color: $peter-river;
+
+.nav{
+  width:100%;
+  border-bottom: 3px solid $clouds;
+  font-size: 1.2em;
+  background-color: $whitesmoke;
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li{
+      float:left;
+      padding: 10px 15px;
+      a{
+        text-decoration: none;
+        color: $midnight-blue;
+      }
+    }
+  }
+  .nav-main{
+
+  }
+  .nav-right{
+    float:right;
+  }
+}
+
+.logo{
+  font-family: 'Pacifico', cursive;
+  padding: 0px 30px !important;
+  font-size: 1.7em;
+  a{
+    color: $accent-color !important;
+  }
+}

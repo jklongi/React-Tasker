@@ -1,46 +1,17 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, withRouter, Redirect, Link } from 'react-router-dom'
+import { BrowserRouter, Route, withRouter, Redirect, Link } from 'react-router-dom'
 import Firebase from '../Firebase';
 import Dashboard from './Dashboard';
+import Register from './Register';
+import Groups from './Groups';
 import Home from './Home';
 import '../styles/App.css';
 
-class App extends Component {
-  componentDidMount(){
-    Firebase.auth().onAuthStateChanged(function(user){
-      if(user){
-        fakeAuth.isAuthenticated = true
-      } else {
-        fakeAuth.isAuthenticated = false
-      }
-      this.forceUpdate();
-    }.bind(this))
-  }
-  render(){
-    console.log(fakeAuth.isAuthenticated);
-    return(
-      <BrowserRouter>
-        <div>
-          <ul className={"nav"}>
-            <li><AuthButton/></li>
-            <li><Link to="/">Public Page</Link></li>
-            <li><Link to="/dashboard">Protected Page</Link></li>
-          </ul>
-          <Route exact path="/" component={Home}/>
-          <Route path="/login" component={Login}/>
-          <PrivateRoute path="/dashboard" component={Dashboard}/>
-        </div>
-      </BrowserRouter>
-    )
-  }
-}
-
-const fakeAuth = {
+const auth = {
   isAuthenticated: false,
   authenticate(cb) {
     Firebase.auth().onAuthStateChanged(function(user){
       if(user){
-        console.log(user);
         this.isAuthenticated = true
       } else {
         this.isAuthenticated = false
@@ -50,46 +21,29 @@ const fakeAuth = {
   },
   signout() {
     this.isAuthenticated = false
+    Firebase.auth().signOut();
   }
 }
 
-const AuthButton = withRouter(({ history }) => (
-  fakeAuth.isAuthenticated ? (
-    <Link to="/" onClick={() => {
-      fakeAuth.signout()
-    }}>Logout</Link>
-  ) : (
-    <Link to="/login">Login</Link>
-  )
-))
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    fakeAuth.isAuthenticated ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-)
-
-const Public = () => <h3>Public</h3>
-const Protected = () => <h3>Protected</h3>
-
 class Login extends React.Component {
   state = {
-    redirectToReferrer: false
+    redirectToReferrer: false,
+    email: '',
+    password: ''
   }
-
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState({ redirectToReferrer: true })
-    })
+  handlePasswordChange(e){
+    this.setState({password: e.target.value})
   }
-
+  handleEmailChange(e){
+    this.setState({email: e.target.value})
+  }
+  login = (e) => {
+    e.preventDefault();
+    Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+      console.log(error)
+    });
+    this.setState({ redirectToReferrer: true })
+  }
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state
@@ -99,14 +53,93 @@ class Login extends React.Component {
         <Redirect to={from}/>
       )
     }
-
     return (
-      <div>
-        <p>You must log in to view the page at {from.pathname}</p>
-        <button onClick={this.login}>Log in</button>
-      </div>
+      <form onSubmit={(e) => this.login(e)}>
+        <label>
+          Email:
+          <input type="text" value={this.state.email} onChange={(e) => this.handleEmailChange(e)} />
+        </label>
+        <label>
+          Password:
+          <input type="password" value={this.state.password} onChange={(e) => this.handlePasswordChange(e)} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
     )
   }
 }
+
+
+class App extends Component {
+  state = {
+    user: null
+  }
+  componentDidMount(){
+    Firebase.auth().onAuthStateChanged(function(user){
+      if(user){
+        auth.isAuthenticated = true
+        this.setState({user: user})
+      } else {
+        auth.isAuthenticated = false
+        this.setState({user: null})
+      }
+      this.forceUpdate();
+    }.bind(this))
+  }
+  render(){
+    return(
+      <BrowserRouter>
+        <div>
+          <div className={"nav"}>
+            <ul className={"nav-main"}>
+              <li className={"logo"}><Link to="/">Tasker</Link></li>
+              <li><Link to="/dashboard">Dashboard</Link></li>
+            </ul>
+            <ul className={"nav-right"}>
+              <li><Link to="/groups">Groups</Link></li>
+              <li><RegisterButton/></li>
+              <li><AuthButton/></li>
+            </ul>
+          </div>
+          <div className={"main-container"}>
+            <Route exact path="/" component={Home}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
+            <PrivateRoute user={this.state.user} path="/dashboard" component={Dashboard}/>
+            <PrivateRoute user={this.state.user} path="/groups" component={Groups}/>
+          </div>
+        </div>
+      </BrowserRouter>
+    )
+  }
+}
+
+const AuthButton = withRouter(({ history }) => (
+  auth.isAuthenticated ? (
+    <Link to="/" onClick={() => {
+      auth.signout()
+    }}>Logout</Link>
+  ) : (
+    <Link to="/login">Login</Link>
+  )
+))
+
+const RegisterButton = withRouter(({ history }) => (
+  auth.isAuthenticated ? null : <Link to="/register">Register</Link>
+))
+
+const PrivateRoute = ({ component: Component, user, ...rest }) => (
+  <Route {...rest} render={props => (
+    auth.isAuthenticated ? (
+      <Component user={user} {...props}/>
+    ) : (
+      <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
+
 
 export default App
