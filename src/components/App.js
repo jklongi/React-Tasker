@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, withRouter, Redirect, Link } from 'react-router-dom'
 import Firebase from '../Firebase';
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import Register from './Register';
-import Groups from './Groups';
+import Navigation from './Navigation';
+import Groups from './Groups/Groups';
 import Home from './Home';
 import '../styles/App.css';
 
@@ -90,22 +91,12 @@ class App extends Component {
     return(
       <BrowserRouter>
         <div>
-          <div className={"nav"}>
-            <ul className={"nav-main"}>
-              <li className={"logo"}><Link to="/">Tasker</Link></li>
-              <li><Link to="/dashboard">Dashboard</Link></li>
-            </ul>
-            <ul className={"nav-right"}>
-              <li><Link to="/groups">Groups</Link></li>
-              <li><RegisterButton/></li>
-              <li><AuthButton/></li>
-            </ul>
-          </div>
+          <Navigation user={this.state.user}/>
           <div className={"main-container"}>
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
-            <PrivateRoute user={this.state.user} path="/dashboard" component={Dashboard}/>
+            <PrivateRoute user={this.state.user} path="/dashboard/:groupId" component={Dashboard}/>
             <PrivateRoute user={this.state.user} path="/groups" component={Groups}/>
           </div>
         </div>

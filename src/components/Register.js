@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Firebase from '../Firebase';
-import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 const storageRef = Firebase.storage().ref('avatars')
+const usersRef = Firebase.database().ref('users')
 const defaultAvatar = "https://firebasestorage.googleapis.com/v0/b/reacttasker.appspot.com/o/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png?alt=media&token=32166656-3fb2-4a41-be7b-d29765341788"
 
 class Register extends Component {
@@ -41,17 +42,11 @@ class Register extends Component {
           }, (err) => {
             console.log(err)
           }, () => {
-            user.updateProfile({
-              displayName: this.state.name,
-              photoURL: fileUpload.snapshot.downloadURL
-            })
+            usersRef.child(user.uid).set({name: this.state.name})
             this.setState({file: '', name: '', password: '', passwordConfirmation:'', email:''})
           })
         } else {
-          user.updateProfile({
-            displayName: this.state.name,
-            photoURL: defaultAvatar
-          })
+          usersRef.child(user.uid).set({name: this.state.name})
           this.setState({file: '', name: '', password: '', passwordConfirmation:'', email:''})
         }
       })
