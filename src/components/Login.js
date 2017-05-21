@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Firebase from '../Firebase';
+import { Form, FormGroup, FormControl, Button, ControlLabel } from 'react-bootstrap';
+import { Redirect} from 'react-router-dom'
 
-class Login extends Component {
+class Login extends React.Component {
   state = {
+    redirectToReferrer: false,
     email: '',
     password: ''
   }
@@ -12,22 +15,40 @@ class Login extends Component {
   handleEmailChange(e){
     this.setState({email: e.target.value})
   }
-  handleSubmit(e){
+  login = (e) => {
     e.preventDefault();
+    Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+      console.log(error)
+    });
+    this.setState({ redirectToReferrer: true })
   }
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state
+
+    if (redirectToReferrer) {
+      return (
+        <Redirect to={from}/>
+      )
+    }
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <label>
-          Email:
-          <input type="text" value={this.state.email} onChange={(e) => this.handleEmailChange(e)} />
-        </label>
-        <label>
-          Password:
-          <input type="password" value={this.state.password} onChange={(e) => this.handlePasswordChange(e)} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <Form onSubmit={(e) => this.login(e)} className={'container'}>
+        <FormGroup>
+          <ControlLabel>Email:</ControlLabel>
+          <FormControl type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.handleEmailChange(e)}  />
+        </FormGroup>
+
+        <FormGroup>
+          <ControlLabel>Password:</ControlLabel>
+          <FormControl type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.handlePasswordChange(e)}/>
+        </FormGroup>
+
+        <FormGroup>
+          <Button type="submit">
+            Sign in
+          </Button>
+        </FormGroup>
+      </Form>
     )
   }
 }

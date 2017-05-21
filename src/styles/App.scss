@@ -25,6 +25,12 @@ $whitesmoke: #fafafa;
 $separator: #fefefe;
 
 $accent-color: #fc3a64;
+
+
+$flat-blue: #6dc2f2;
+$flat-yellow: #f2b362;
+$flat-red: #d65768;
+$flat-green: #4aa6a9;
 //$accent-color: $peter-river;
 
 .right{
@@ -33,27 +39,109 @@ $accent-color: #fc3a64;
 
 .navbar{
   border-radius: 0px;
+  .navbar-brand{
+    border: 0;
+  }
+  .nav {
+    li{
+      border-radius: 0 !important;
+      a{
+        border-radius:0 !important;
+      }
+    }
+  }
 }
+
 
 .bottom{
   margin-bottom: 15px;
 }
 
+.never-active{
+  a{
+    background-color: $wet-asphalt !important;
+  }
+}
+
 .task{
-  background-color: #eee;
   margin: 0;
+  border-bottom: 2px solid white;
+  text-align: center;
+  position: relative;
+  background-color: #eee;
   .owner{
     text-overflow: ellipsis;
-    overflow: hidden;
-    padding: 15px;
+    padding: 15px 0px;
+    cursor: pointer;
+  }
+  .owner-selection{
+    &::before{
+      content: ' ';
+      height: 0;
+      position: absolute;
+      width: 0;
+      top:-20px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-bottom-color: white;
+      z-index: 200;
+    }
+    position: absolute;
+    list-style: none;
+    width: 300px;
+    margin: 0;
+    padding: 0;
+    top: 100%;
+    z-index: 100;
+    margin-top: 10px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    li{
+      height: 62px;
+      background-color: white;
+      line-height: 62px;
+      cursor: pointer;
+      &:hover{
+        background-color: $clouds;
+      }
+      &:active, &:focus{
+        background-color: $silver;
+      }
+    }
   }
   .description {
     border-left: 2px solid white;
     border-right: 2px solid white;
     padding: 15px;
+    input {
+      width:100%;
+      border: 0;
+      background-color: transparent;
+      outline: 0;
+    }
   }
-  .states{
-    padding: 15px;
+  .stages {
+    padding: 0;
+    height: 62px;
+    background-color: white;
+    & > div{
+      cursor: pointer;
+      height: 100%;
+      text-transform: capitalize;
+      padding: 15px 0px;
+      border-right: 2px solid white;
+      background-color: #eee;
+      &.green {
+        background-color: $emerland;
+      }
+      &.yellow{
+        background-color: $sun-flower;
+      }
+      &.red{
+        background-color: $alizarin;
+      }
+    }
   }
 }
 

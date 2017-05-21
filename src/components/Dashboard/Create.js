@@ -14,11 +14,16 @@ class Backlog extends Component {
   }
   handleSubmit(e){
     if(this.state.task){
-      groupRef.child(this.props.groupId).child(this.props.section).push({
+      const task = groupRef.child(this.props.groupId).child(this.props.section).push({
         description: this.state.task,
         creator: this.props.user.uid,
         owner: this.props.user.uid,
         created: Moment().unix(),
+      })
+      task.ref.child('stages').set({
+        design: '',
+        development: '',
+        testing: ''
       })
       this.setState({task:''});
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from "jquery";
-import { Button, FormGroup, FormControl, Accordion, Panel } from 'react-bootstrap';
+import { Accordion, Panel } from 'react-bootstrap';
 import Firebase from '../../Firebase';
 import Pending from './Pending';
 import Members from './Members';
@@ -27,6 +27,7 @@ class Groups extends Component {
   componentDidMount(){
     groupRef.on('value', (snap) => {
       const groups = snap.val();
+      console.log(groups);
       this.getNames(groups);
     })
   }

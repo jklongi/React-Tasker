@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Firebase from '../Firebase';
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
-const storageRef = Firebase.storage().ref('avatars')
-const usersRef = Firebase.database().ref('users')
+const storageRef = Firebase.storage().ref('/avatars')
+const usersRef = Firebase.database().ref('/users')
 const defaultAvatar = "https://firebasestorage.googleapis.com/v0/b/reacttasker.appspot.com/o/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png?alt=media&token=32166656-3fb2-4a41-be7b-d29765341788"
 
 class Register extends Component {
@@ -42,11 +42,11 @@ class Register extends Component {
           }, (err) => {
             console.log(err)
           }, () => {
-            usersRef.child(user.uid).set({name: this.state.name})
+            usersRef.child(user.uid).set({name: this.state.name, avatar: fileUpload.snapshot.downloadURL})
             this.setState({file: '', name: '', password: '', passwordConfirmation:'', email:''})
           })
         } else {
-          usersRef.child(user.uid).set({name: this.state.name})
+          usersRef.child(user.uid).set({name: this.state.name, avatar: defaultAvatar})
           this.setState({file: '', name: '', password: '', passwordConfirmation:'', email:''})
         }
       })
@@ -55,7 +55,7 @@ class Register extends Component {
   }
   render() {
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)} className={'container'}>
+      <Form onSubmit={(e) => this.handleSubmit(e)} className={'container'}>
 
         <FormGroup controlId="email">
           <ControlLabel>Email:</ControlLabel>
@@ -82,8 +82,12 @@ class Register extends Component {
           <FormControl type="file" onChange={(e) => this.handleFileChange(e)} />
         </FormGroup>
 
-        <input type="submit" value="Submit" />
-      </form>
+        <FormGroup>
+          <Button type="submit">
+            Register
+          </Button>
+        </FormGroup>
+      </Form>
     )
   }
 }

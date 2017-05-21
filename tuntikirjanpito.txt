@@ -1,0 +1,21 @@
+8.5.  |4h   | Projektin aloitus, reactin asennus.
+9.5.  |5h   |  Aiheen suunnittelu, Git ja travis setup.
+10.5. |5h   |  Ensimmäiset koodit, Firebase setup.
+11.5. |8h   |  Rekisteröintiä ja kirjautumista. Yllättävän vaikeaa Firebasen listener tyylisen authin takia.
+12.5. |4h   |  Onnistunut login. Perus näkymien ja navigaation tekoa.
+13.5. |11h  |  Toimiva rekisteröitymislomake. Grouppien luontien ensimmäinen näkymä. Ensimmäiset datat firebaseen.
+14.5. |10.5h|  Grouppien invite systeemi. Suhteellisen haastavaa koska firebasesta ei saa irti käyttäjän tietoja muutenkuni käyttää itse? Invite siis tapahtuu
+käyttäjän sähköpostilla ja tämän jälkeen jos oma sähköposti sattuu matchaamaan tähän voi inviten hyväksyä ja tällöin taustalla pushata oman idnsä groupiin.
+Suora liittäminen groupiin ei siis onnistu koska listaa ei saa mistään.
+15.5. |4h   |  Käyttäille oma "taulu" firebasessa jonne käyttäjien nimet ja avatar urlit tallennetaan, jotta ne olisivat käytössä kaikkialla.
+16.5. |8h   |  Group kohtaisten taskien luonti. Simppeli luonti, detalien muokkaus jälkikäteen.
+17.5. |-    |
+18.5. |8h   |  Group taskeille käyttäjän vaihto. haastavaa koska joka kerta kun taskeja hakee firebasesta täytyy ne loopata läpi ja liittää niihin käyttäjätaulusta käyttäjänimet.
+19.5. |-    |
+20.5. |3h   |  Taskin käyttäjän vaihto. Reactissa aika vaikeaa rendata jotain clickin tapahtuessa. Pitäisikö vain rendata paljon dropdowneja ja hide/show on click?
+21.5. |9h   |  Taskien muokkaus, käyttäjän, kuvauksen ja vaiheiden statuksen vaihto
+22.5. |     |
+23.5. |     |
+24.5. |     |
+25.5. |     |
+26.5. |     |

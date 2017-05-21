@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Firebase from '../Firebase';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import { BrowserRouter, Route, withRouter, Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap';
 import $ from "jquery";
 
@@ -18,7 +18,7 @@ class Navigation extends Component {
   }
   render() {
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar fluid inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">Tasker</Link>
@@ -62,12 +62,12 @@ const RegisterButton = (props) => {
 
 const LoginButton = (props) => {
   return props.user ? (
-    <LinkContainer to="/" onClick={() => {Firebase.auth().signOut()}}>
-      <NavItem eventKey={4}>Logout</NavItem>
+    <LinkContainer to="/" className="never-active" onClick={() => {Firebase.auth().signOut()}}>
+      <NavItem eventKey={4} active={false}>Logout</NavItem>
     </LinkContainer>
   ) : (
     <LinkContainer to="/login">
-      <NavItem eventKey={4}>Login</NavItem>
+      <NavItem eventKey={5}>Login</NavItem>
     </LinkContainer>
   )
 }

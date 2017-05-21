@@ -3,23 +3,86 @@
 
 .navbar {
   border-radius: 0px; }
+  .navbar .navbar-brand {
+    border: 0; }
+  .navbar .nav li {
+    border-radius: 0 !important; }
+    .navbar .nav li a {
+      border-radius: 0 !important; }
 
 .bottom {
   margin-bottom: 15px; }
 
+.never-active a {
+  background-color: #34495e !important; }
+
 .task {
-  background-color: #eee;
-  margin: 0; }
+  margin: 0;
+  border-bottom: 2px solid white;
+  text-align: center;
+  position: relative;
+  background-color: #eee; }
   .task .owner {
     text-overflow: ellipsis;
-    overflow: hidden;
-    padding: 15px; }
+    padding: 15px 0px;
+    cursor: pointer; }
+  .task .owner-selection {
+    position: absolute;
+    list-style: none;
+    width: 300px;
+    margin: 0;
+    padding: 0;
+    top: 100%;
+    z-index: 100;
+    margin-top: 10px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); }
+    .task .owner-selection::before {
+      content: ' ';
+      height: 0;
+      position: absolute;
+      width: 0;
+      top: -20px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-bottom-color: white;
+      z-index: 200; }
+    .task .owner-selection li {
+      height: 62px;
+      background-color: white;
+      line-height: 62px;
+      cursor: pointer; }
+      .task .owner-selection li:hover {
+        background-color: #ecf0f1; }
+      .task .owner-selection li:active, .task .owner-selection li:focus {
+        background-color: #bdc3c7; }
   .task .description {
     border-left: 2px solid white;
     border-right: 2px solid white;
     padding: 15px; }
-  .task .states {
-    padding: 15px; }
+    .task .description input {
+      width: 100%;
+      border: 0;
+      background-color: transparent;
+      outline: 0; }
+  .task .stages {
+    padding: 0;
+    height: 62px;
+    background-color: white; }
+    .task .stages > div {
+      cursor: pointer;
+      height: 100%;
+      text-transform: capitalize;
+      padding: 15px 0px;
+      border-right: 2px solid white;
+      background-color: #eee; }
+      .task .stages > div.green {
+        background-color: #2ecc71; }
+      .task .stages > div.yellow {
+        background-color: #f1c40f; }
+      .task .stages > div.red {
+        background-color: #e74c3c; }
 
 .panel-group .panel {
   margin-bottom: 0;
