@@ -2,6 +2,7 @@
   "name": "react-tasker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://jklongi.github.io/React-Tasker",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "bootstrap-datetimepicker-npm": "^4.17.37-npm",
@@ -19,6 +20,7 @@
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "node-sass-chokidar": "0.0.1",
     "npm-run-all": "^4.0.2",
     "react-scripts": "0.9.5"
@@ -30,6 +32,8 @@
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

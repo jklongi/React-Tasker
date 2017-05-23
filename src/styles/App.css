@@ -10,18 +10,38 @@
     .navbar .nav li a {
       border-radius: 0 !important; }
 
+.center {
+  text-align: center; }
+
 .bottom {
   margin-bottom: 15px; }
 
 .never-active a {
   background-color: #34495e !important; }
 
+.slogan {
+  width: 100%;
+  margin-top: 120px;
+  background-color: #f04f4f;
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); }
+  .slogan .label-container {
+    display: inline-block;
+    margin: 0 60px; }
+    .slogan .label-container span {
+      font-size: 7em; }
+
 .task {
   margin: 0;
   border-bottom: 2px solid white;
   text-align: center;
   position: relative;
-  background-color: #eee; }
+  background-color: #eee;
+  position: relative; }
   .task .owner {
     text-overflow: ellipsis;
     padding: 15px 0px;
@@ -83,6 +103,15 @@
         background-color: #f1c40f; }
       .task .stages > div.red {
         background-color: #e74c3c; }
+  .task .edit-task {
+    position: absolute;
+    right: -30px;
+    top: 12px;
+    padding: 10px;
+    display: none;
+    cursor: pointer; }
+  .task:hover .edit-task {
+    display: block; }
 
 .panel-group .panel {
   margin-bottom: 0;

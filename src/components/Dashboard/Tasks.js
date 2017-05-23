@@ -44,7 +44,13 @@ class Tasks extends Component {
         {$.map(this.props.tasks, (task, id) => {
           return (
             <Row key={id} className="task">
-              <Col xs={2} className="owner" onClick={() => {this.open(id)}}>{task.name}</Col>
+              <Col
+                xs={2}
+                className="owner"
+                onClick={() => {this.open(id)}}
+                style={{'backgroundImage':'url(' + task.avatar + ')', 'backgroundSize':'cover'}}>
+                {task.name}
+              </Col>
               <UserSelection members={this.props.group.members} open={this.state.open === id} onSelect={this.onSelect.bind(this)}/>
               <Col xs={6} className="description">
                 <DescriptionEdit description={task.description} task={id} saveDescription={this.saveDescription.bind(this)}/>

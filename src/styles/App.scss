@@ -52,6 +52,10 @@ $flat-green: #4aa6a9;
   }
 }
 
+.center{
+  text-align: center;
+}
+
 
 .bottom{
   margin-bottom: 15px;
@@ -63,12 +67,32 @@ $flat-green: #4aa6a9;
   }
 }
 
+.slogan{
+  width:100%;
+  margin-top: 120px;
+  background-color: #f04f4f;
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  .label-container{
+    display: inline-block;
+    margin: 0 60px;
+    span{
+      font-size: 7em;
+    }
+  }
+}
+
 .task{
   margin: 0;
   border-bottom: 2px solid white;
   text-align: center;
   position: relative;
   background-color: #eee;
+  position: relative;
   .owner{
     text-overflow: ellipsis;
     padding: 15px 0px;
@@ -141,6 +165,19 @@ $flat-green: #4aa6a9;
       &.red{
         background-color: $alizarin;
       }
+    }
+  }
+  .edit-task{
+    position: absolute;
+    right: -30px;
+    top: 12px;
+    padding: 10px;
+    display:none;
+    cursor: pointer;
+  }
+  &:hover{
+    .edit-task{
+      display:block;
     }
   }
 }
