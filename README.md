@@ -4,4 +4,4 @@ Tasker tehtävien hallintasovellus. Sovellukseen voi rekisteröityä, jonka jäl
 vaatii aina kutsun ryhmän omistajalta. Kun ryhmä on luotu, voi käyttäjä luoda ryhmän sisäisiä tehtäviä ja hallita niiden tilaa.
 
 Deployattu versio:
-https://github.com/jklongi/React-Tasker
+https://jklongi.github.io/React-Tasker/
