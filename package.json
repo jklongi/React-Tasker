@@ -2,7 +2,7 @@
   "name": "react-tasker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://jklongi.github.io/React-Tasker",
+  "homepage": "http://jklongi.github.io/React-Tasker/",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "bootstrap-datetimepicker-npm": "^4.17.37-npm",
