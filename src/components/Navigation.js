@@ -26,22 +26,24 @@ class Navigation extends Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
+        {this.props.user ? (
           <Nav>
-            <NavDropdown eventKey={2} title="Dashboard" id="basic-nav-dropdown">
+              <NavDropdown eventKey={2} title="Dashboard" id="basic-nav-dropdown">
               {$.map(this.state.groups, (group, id) => {
-                if(this.props.user && group.members[this.props.user.uid]){
+                if(group.members[this.props.user.uid]){
                   return (
                     <LinkContainer to={"/dashboard/"+id} key={id}>
-                      <MenuItem eventKey={id} >{group.name}</MenuItem>
+                    <MenuItem eventKey={id} >{group.name}</MenuItem>
                     </LinkContainer>
                   )
                 }
               })}
-            </NavDropdown>
-            <LinkContainer to="/groups">
-              <NavItem eventKey={1}>Groups</NavItem>
-            </LinkContainer>
+              </NavDropdown>
+              <LinkContainer to="/groups">
+                <NavItem eventKey={1}>Groups</NavItem>
+              </LinkContainer>
           </Nav>
+          ) : null }
           <Nav pullRight>
             <RegisterButton user={this.props.user}/>
             <LoginButton user={this.props.user}/>

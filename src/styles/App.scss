@@ -167,16 +167,28 @@ $flat-green: #4aa6a9;
       }
     }
   }
-  .edit-task{
+  .move, .delete{
     position: absolute;
-    right: -30px;
-    top: 12px;
     padding: 10px;
     display:none;
     cursor: pointer;
   }
+  .move{
+    left: -35px;
+    top: 12px;
+    &:hover{
+      color: $emerland;
+    }
+  }
+  .delete{
+    right: -35px;
+    top: 12px;
+    &:hover{
+      color: $alizarin;
+    }
+  }
   &:hover{
-    .edit-task{
+    .move, .delete{
       display:block;
     }
   }

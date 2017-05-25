@@ -2,6 +2,8 @@
 9.5.  |5h   |  Aiheen suunnittelu, Git ja travis setup.
 10.5. |5h   |  Ensimmäiset koodit, Firebase setup.
 11.5. |8h   |  Rekisteröintiä ja kirjautumista. Yllättävän vaikeaa Firebasen listener tyylisen authin takia.
+Testiyritykset: Travis yllättävän vaikeaa saadaa compilemaan. Ajaa testit mutta ei tee mitään sen jälkeen eli ei ole continuous delivery.
+Lisäksi react testit hyvin hankalia => luultavasti 75h ajassa ei kerkeä testailemaan
 12.5. |4h   |  Onnistunut login. Perus näkymien ja navigaation tekoa.
 13.5. |11h  |  Toimiva rekisteröitymislomake. Grouppien luontien ensimmäinen näkymä. Ensimmäiset datat firebaseen.
 14.5. |10.5h|  Grouppien invite systeemi. Suhteellisen haastavaa koska firebasesta ei saa irti käyttäjän tietoja muutenkuin käyttää itse? Invite siis tapahtuu
@@ -16,10 +18,11 @@ Suora liittäminen groupiin ei siis onnistu koska listaa ei saa mistään.
 21.5. |9h   |  Taskien muokkaus, käyttäjän, kuvauksen ja vaiheiden statuksen vaihto
 22.5. |-    |
 23.5. |5h   |  Avatarit mukaan, pieniä bugikorjauksia, landing page luonti, deployaaminen GH pagesiin
-24.5. |     |
-25.5. |     |
-26.5. |     |
-
+24.5. |-    |
+25.5. |5.5h |  Taskien siirtäminen backlogista aktiiviseksi ja toisinpäin, sekä niiden kokonaan deletointi. Muutaman viimeistelykorjaukset.
+Testauksen yritys: Aivan liian hankalaa ja ehkä liian myöhäistäkin tässä vaiheessa. Normi js testaus huomattavsti helpompaa, mutta es6 class moduulien testaus ei edes hyvällä googletuksella auennut.
+26.5. |-    |
+      |90h  |
 
 Parannettavaa:
 - Käyttäjälle viestiminen esim latauksen odottelu ja virhetilanteet

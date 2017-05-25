@@ -23,13 +23,18 @@ class Create extends Component {
       this.setState({groupName: ''})
     }
   }
+  handleKeyUp(e){
+    if(e.keyCode === 13){
+      this.handleSubmit(e)
+    }
+  }
   render() {
     return (
       <div>
         <h1>Create a group</h1>
         <FormGroup>
           <InputGroup>
-            <FormControl type="text" value={this.state.groupName} placeholder="Group Name" onChange={(e) => this.handleChange(e)} />
+            <FormControl type="text" value={this.state.groupName} onKeyUp={(e) => this.handleKeyUp(e)} placeholder="Group Name" onChange={(e) => this.handleChange(e)} />
             <InputGroup.Button>
               <Button onClick={(e) => this.handleSubmit(e)}>Create</Button>
             </InputGroup.Button>

@@ -5,3 +5,7 @@ vaatii aina kutsun ryhmän omistajalta. Kun ryhmä on luotu, voi käyttäjä luo
 
 Deployattu versio:
 https://jklongi.github.io/React-Tasker/
+
+
+Asennus:
+Käytetty create-react-app generaattoria eli käynnistämiseen npm install ja npm start

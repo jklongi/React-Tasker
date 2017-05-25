@@ -103,14 +103,22 @@
         background-color: #f1c40f; }
       .task .stages > div.red {
         background-color: #e74c3c; }
-  .task .edit-task {
+  .task .move, .task .delete {
     position: absolute;
-    right: -30px;
-    top: 12px;
     padding: 10px;
     display: none;
     cursor: pointer; }
-  .task:hover .edit-task {
+  .task .move {
+    left: -35px;
+    top: 12px; }
+    .task .move:hover {
+      color: #2ecc71; }
+  .task .delete {
+    right: -35px;
+    top: 12px; }
+    .task .delete:hover {
+      color: #e74c3c; }
+  .task:hover .move, .task:hover .delete {
     display: block; }
 
 .panel-group .panel {

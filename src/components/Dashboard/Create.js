@@ -14,18 +14,23 @@ class Backlog extends Component {
   }
   handleSubmit(e){
     if(this.state.task){
-      const task = groupRef.child(this.props.groupId).child(this.props.section).push({
+      groupRef.child(this.props.groupId).child(this.props.section).push({
         description: this.state.task,
         creator: this.props.user.uid,
         owner: this.props.user.uid,
         created: Moment().unix(),
-      })
-      task.ref.child('stages').set({
-        design: '',
-        development: '',
-        testing: ''
+        stages: {
+          design: '',
+          development: '',
+          testing: ''
+        }
       })
       this.setState({task:''});
+    }
+  }
+  handleKeyUp(e){
+    if(e.keyCode === 13){
+      this.handleSubmit(e)
     }
   }
   render() {
@@ -33,7 +38,7 @@ class Backlog extends Component {
       <div>
         <FormGroup>
           <InputGroup>
-            <FormControl type="text" value={this.state.task} placeholder="What needs to be done?" onChange={(e) => this.handleChange(e)} />
+            <FormControl type="text" onKeyUp={(e) => this.handleKeyUp(e)} value={this.state.task} placeholder="What needs to be done?" onChange={(e) => this.handleChange(e)} />
             <InputGroup.Button>
               <Button onClick={(e) => this.handleSubmit(e)}>
                 <Glyphicon glyph="plus"/>

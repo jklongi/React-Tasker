@@ -27,12 +27,14 @@ class Groups extends Component {
   componentDidMount(){
     groupRef.on('value', (snap) => {
       const groups = snap.val();
-      console.log(groups);
       this.getNames(groups);
     })
   }
   handleChange(e){
     this.setState({ groupName: e.target.value });
+  }
+  componentWillUnmount() {
+    groupRef.off()
   }
   handleSubmit(e){
     e.preventDefault();
@@ -54,8 +56,8 @@ class Groups extends Component {
         <h1>Your groups</h1>
         <Accordion>
           {$.map(this.state.groups, (group, groupId) => {
-            const member = group.members[this.props.user.uid];
-            const pending = group.pending ? Object.values(group.pending).some((email) => {
+            var member = group.members[this.props.user.uid];
+            var pending = group.pending ? Object.values(group.pending).some((email) => {
               return email === this.props.user.email;
             }) : false;
             if(member || pending){

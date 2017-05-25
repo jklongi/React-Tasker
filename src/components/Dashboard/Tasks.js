@@ -38,6 +38,20 @@ class Tasks extends Component {
       groupRef.child(this.props.groupId).child(this.props.section).child(id).child('stages').child(name).set('');
     }
   }
+  delete(id){
+    groupRef.child(this.props.groupId).child(this.props.section).child(id).remove();
+  }
+  move(section, id){
+    groupRef.child(this.props.groupId).child(this.props.section).child(id).once('value').then((snap) => {
+      groupRef.child(this.props.groupId).child(section).child(id).set(snap.val(), (error) => {
+        if(!error){
+          setTimeout( () => this.delete(id), 500);
+        } else {
+          console.log('Could not move task!')
+        }
+      })
+    })
+  }
   render() {
     return (
       <div className="bottom">
@@ -62,6 +76,12 @@ class Tasks extends Component {
                   )
                 })}
               </Col>
+              <span onClick={() => this.delete(id)} className="delete glyphicon glyphicon-remove"></span>
+              {this.props.section === "active" ? (
+                <span onClick={() => this.move('backlog', id)} className="move glyphicon glyphicon-chevron-down"></span>
+              ) : (
+                <span onClick={() => this.move('active', id)} className="move glyphicon glyphicon-chevron-up"></span>
+              )}
             </Row>
           )
         })}

@@ -62,20 +62,6 @@ class App extends Component {
   }
 }
 
-/*const AuthButton = withRouter(({ history }) => (
-  auth.isAuthenticated ? (
-    <Link to="/" onClick={() => {
-      auth.signout()
-    }}>Logout</Link>
-  ) : (
-    <Link to="/login">Login</Link>
-  )
-))
-
-const RegisterButton = withRouter(({ history }) => (
-  auth.isAuthenticated ? null : <Link to="/register">Register</Link>
-))*/
-
 const PrivateRoute = ({ component: Component, user, ...rest }) => (
   <Route {...rest} render={props => (
     auth.isAuthenticated ? (
